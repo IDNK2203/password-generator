@@ -18,7 +18,7 @@ const random_func = {
 };
 
 function generate_password(length, upper, lower, number, symbol) {
-// init password value
+// init password value 
   let generated_pasword = "";
 // calculate number of character set with a true option value
   let type_count = upper + lower + number + symbol;
@@ -30,18 +30,22 @@ function generate_password(length, upper, lower, number, symbol) {
   if(type_count === 0 ){
     return "" ;
   }
-// loop through the [length] amount of times to the random functions and build the generated password string  
+//h loop through the [length] amount of times to the random functions and build the generated password string  
   for(let i = 0 ; i < length ; i+= type_count){
+// loop over the selected character set and extract its function reference name
     type_arr.forEach( type =>{
     const func_name = Object.keys(type)[0]
-    console.log(func_name)
+// generate a random character for each character set using its function reference name
     generated_pasword += random_func[func_name]()
     })
   }
-  generated_pasword.slice(0 , length)
-  // return the generated password string
 
-  return generated_pasword;
+// cut password length down to the selected length
+  let final_paswword =   generated_pasword.slice(0  ,length)
+  console.log(final_paswword.length)
+
+// return the generated password string
+  return final_paswword;
 }
 
 // click event to generate password
@@ -101,13 +105,3 @@ function random_symbol() {
 }
 
 console.log(random_symbol());
-// console.log(
-//   result_panel,
-//   clipboard,
-//   length,
-//   uppercase,
-//   lowercase,
-//   numbers,
-//   symbols,
-//   generate
-// );
